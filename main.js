@@ -1,119 +1,112 @@
-import {TabelaHash} from "../core/TabelaHash.js";
-import {ServicoCadastro} from "./core/ServicoCadastro.js";
+import { TabelaHash } from "./core/TabelaHash.js";
+import { ServicoCadastro } from "./core/ServicoCadastro.js";
 
-// Instâncias Globais (ou de Módulo)
+// Instâncias globais (camada de dados/serviço)
 const tabela = new TabelaHash();
 const servico = new ServicoCadastro(tabela);
 
 /**
- * Função assíncrona de inicialização que garante que os dados
- * sejam carregados antes de configurar os eventos de UI.
+ * InterfaceController: Responsável APENAS por manipular o DOM.
+ * Isso isola a lógica de visualização da lógica de negócios.
  */
-async function inicializarAplicacao() {
-    console.log("Iniciando o carregamento dos dados iniciais...");
-    const resultadoCarga = await servico.carregarDadosIniciais();
+const InterfaceController = {
+    
+    // Utilitário para exibir mensagens coloridas
+    exibirMensagem(elemento, texto, tipo = 'neutro') {
+        elemento.innerHTML = "";
+        const p = document.createElement('p');
+        p.textContent = texto;
+        
+        if (tipo === 'sucesso') p.className = 'mensagem-sucesso';
+        if (tipo === 'erro') p.className = 'mensagem-erro';
+        
+        elemento.appendChild(p);
+    },
 
-    if (resultadoCarga.sucesso) {
-        console.info("Aplicação inicializada e pronta para uso.");
-    } else {
-        console.error("Erro fatal na inicialização: Não foi possível carregar os dados.");
-        // Pode-se desabilitar a UI aqui se necessário
-    }
+    // Configura a página de Busca
+    configurarPaginaBusca() {
+        const btnBuscar = document.getElementById('btnBuscar');
+        if (!btnBuscar) return; // Não estamos na página de busca
 
-
-    // Exemplo de teste pós-carregamento (para o console)
-    // Buscando um veículo que sabemos que existe no JSON:
-    const placaTeste = "QJG7F66";
-    const veiculoEncontrado = tabela.obter(placaTeste);
-    console.log(`Teste de busca (${placaTeste}): ${veiculoEncontrado ? veiculoEncontrado.toString() : 'Não encontrado'}`);
-
-}
-// Espera o DOM carregar
-document.addEventListener('DOMContentLoaded', () => {
-    // Apenas se estamos na página de busca
-    if (document.getElementById('btnBuscar')) {
         const inputPlaca = document.getElementById('inputPlacaBusca');
         const resultadoDiv = document.getElementById('resultadoBusca');
-        const btnBuscar = document.getElementById('btnBuscar');
 
         btnBuscar.addEventListener('click', () => {
             const placa = inputPlaca.value.toUpperCase().trim();
-            resultadoDiv.innerHTML = ""; // Limpa resultados anteriores
-
+            
             if (!placa) {
-                resultadoDiv.innerHTML = `<p style="color: red;">🚨 Por favor, insira uma placa.</p>`;
+                this.exibirMensagem(resultadoDiv, "🚨 Por favor, insira uma placa.", "erro");
                 return;
             }
 
-            // Acessa o serviço e a tabela (instâncias globais do módulo)
             const veiculo = servico.tabela.obter(placa);
 
             if (veiculo) {
-                // Usa o método toString() da classe Veiculo
+                // Template String limpa para exibição
                 resultadoDiv.innerHTML = `
-                    <p style="color: green;">✅ **Veículo Encontrado:**</p>
-                    <p>
-                        Placa: **${veiculo.placa}**<br>
-                        Proprietário: **${veiculo.proprietario}**<br>
-                        Modelo: **${veiculo.modelo}**
-                    </p>
-                    <p>Representação: ${veiculo.toString()}</p>
+                    <div style="text-align: left; margin-top: 1rem; border: 1px solid #444; padding: 1rem; border-radius: 8px;">
+                        <h3 style="color: var(--secondary-color)">✅ Veículo Encontrado</h3>
+                        <p><strong>Placa:</strong> ${veiculo.placa}</p>
+                        <p><strong>Proprietário:</strong> ${veiculo.proprietario}</p>
+                        <p><strong>Modelo:</strong> ${veiculo.modelo}</p>
+                    </div>
                 `;
             } else {
-                resultadoDiv.innerHTML = `<p style="color: orange;">⚠️ **Veículo não encontrado** para a placa **${placa}**.</p>`;
+                this.exibirMensagem(resultadoDiv, `⚠️ Veículo não encontrado para a placa ${placa}.`, "erro");
             }
         });
-    }
-});
+    },
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Apenas se estamos na página de cadastro
-    const formCadastro = document.getElementById('formCadastro');
+    // Configura a página de Cadastro
+    configurarPaginaCadastro() {
+        const formCadastro = document.getElementById('formCadastro');
+        if (!formCadastro) return; // Não estamos na página de cadastro
 
-    if (formCadastro) {
         const saidaDiv = document.getElementById('saidaCadastro');
-        const inputPlaca = document.getElementById('placa');
-        const inputProprietario = document.getElementById('proprietario');
-        const inputModelo = document.getElementById('modelo');
 
         formCadastro.addEventListener('submit', (evento) => {
-            evento.preventDefault(); // Evita o recarregamento da página
-            saidaDiv.innerHTML = ""; // Limpa mensagens anteriores
-
-            const placa = inputPlaca.value.toUpperCase().trim();
-            const proprietario = inputProprietario.value.trim();
-            const modelo = inputModelo.value.trim();
+            evento.preventDefault();
+            
+            // Coleta dados
+            const placa = document.getElementById('placa').value.toUpperCase().trim();
+            const proprietario = document.getElementById('proprietario').value.trim();
+            const modelo = document.getElementById('modelo').value.trim();
 
             try {
-                // Chama a função de cadastro do serviço
                 const resultado = servico.cadastrarVeiculo(placa, proprietario, modelo);
-
+                
                 if (resultado.sucesso) {
-                    saidaDiv.innerHTML = `<p style="color: green;">✅ ${resultado.mensagem}</p>`;
-                    // Opcional: Limpar o formulário após o sucesso
+                    this.exibirMensagem(saidaDiv, resultado.mensagem, "sucesso");
                     formCadastro.reset();
-
-                    // Teste para ver se o item foi realmente inserido (Console)
-                    const veiculoCadastrado = servico.tabela.obter(placa);
-                    console.log(`Verificação de Cadastro (Placa ${placa}): ${veiculoCadastrado.toString()}`);
-
-                } else {
-                    // (Esta parte é mais teórica, pois `cadastrarVeiculo` usa `throw` para erros)
-                    saidaDiv.innerHTML = `<p style="color: red;">🚨 Erro no cadastro.</p>`;
                 }
-
             } catch (erro) {
-                // Captura os erros lançados pelas funções de validação
-                saidaDiv.innerHTML = `<p style="color: red;">🚨 Erro de Validação: ${erro.message}</p>`;
+                this.exibirMensagem(saidaDiv, `Erro: ${erro.message}`, "erro");
             }
         });
     }
-});
+};
 
+/**
+ * Função Principal (Entry Point)
+ * Orquestra a inicialização da aplicação
+ */
+async function main() {
+    console.log("⚙️ Inicializando sistema...");
+    
+    // 1. Carregar dados (Backend/Serviço)
+    const carga = await servico.carregarDadosIniciais();
+    if (!carga.sucesso) {
+        console.error("Falha crítica ao carregar dados.");
+    }
 
-// Inicia a aplicação
-inicializarAplicacao();
+    // 2. Configurar Interface (Frontend)
+    // O DOMContentLoaded já aconteceu se o script for 'defer' ou 'module', 
+    // mas por segurança mantemos a verificação ou chamada direta.
+    InterfaceController.configurarPaginaBusca();
+    InterfaceController.configurarPaginaCadastro();
+    
+    console.log("🚀 Sistema pronto.");
+}
 
-// Exportar a Tabela e o Serviço para que outras lógicas de UI possam acessá-los, se necessário
-export { tabela, servico };
-
+// Inicia
+main();

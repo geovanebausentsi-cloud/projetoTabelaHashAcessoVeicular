@@ -4,53 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veiculos autorizados</title>
+    <title>Cadastrar Veículo - Prefeitura</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
     <header>
-        menu nav
-        com uma logo da prefeitura a direita
-        a esquerda dois links cadastro e busca
-    </header>
-
-    <header>
-        menu nav
-        <a href="cadastro.html">Cadastro</a> | <a href="index.html">Busca</a>
+        <div style="font-weight: bold; font-size: 1.2rem; color: var(--primary-color);">
+            🚗 Controlo de Acesso
+        </div>
+        <nav>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="index.html">Busca</a>
+        </nav>
     </header>
 
     <main>
-        <div class="FormularioDeCadastroDeVeiculos">
-            <h2>Insira os dados do veículo:</h2>
-            <form id="formCadastro">
-                <p>
-                    <label for="placa">Placa do Veículo (Ex: ABC1D34):</label><br>
-                    <input type="text" id="placa" name="placa" required placeholder="LLLNLNN">
-                </p>
-                <p>
-                    <label for="proprietario">Proprietário:</label><br>
-                    <input type="text" id="proprietario" name="proprietario" required>
-                </p>
-                <p>
-                    <label for="modelo">Modelo:</label><br>
-                    <input type="text" id="modelo" name="modelo" required>
-                </p>
+        <div class="container-card">
+            <h2>📝 Novo Cadastro</h2>
+            <p style="color: #aaa; margin-bottom: 20px; font-size: 0.9rem;">
+                Preencha os dados abaixo para autorizar um veículo.
+            </p>
 
-                <button type="submit">Cadastrar</button>
+            <form id="formCadastro">
+                <div style="text-align: left;">
+                    <label for="placa">Placa do Veículo</label>
+                    <input type="text" id="placa" name="placa" required placeholder="Ex: ABC1D34">
+                </div>
+
+                <div style="text-align: left; margin-top: 10px;">
+                    <label for="proprietario">Nome do Proprietário</label>
+                    <input type="text" id="proprietario" name="proprietario" required placeholder="Nome completo">
+                </div>
+
+                <div style="text-align: left; margin-top: 10px;">
+                    <label for="modelo">Modelo do Carro</label>
+                    <input type="text" id="modelo" name="modelo" required placeholder="Ex: Fiat Uno">
+                </div>
+
+                <button type="submit">Cadastrar Veículo</button>
             </form>
 
-            <div class="saidaDeCadastro" id="saidaCadastro">
-            </div>
+            <div class="saidaDeCadastro" id="saidaCadastro"></div>
         </div>
-
     </main>
-    <script type="module" src="../core/TabelaHash.js"></script>
-    <script type="module" src="../core/TabelaHashTest.js"></script>
-    <script type="module" src="../core/ServicoCadastro.js"></script>
-    <script type="module" src="../main.js"></script>
+
     <footer>
-        //footer simples em preto
+        &copy; 2025 Prefeitura Municipal - Sistema de Controlo
     </footer>
+
+    <script type="module" src="../main.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,119 @@
+:root {
+    /* Variáveis para facilitar manutenção */
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --text-color: #e0e0e0;
+    --primary-color: #bb86fc; /* Roxo suave */
+    --secondary-color: #03dac6; /* Verde água para sucesso */
+    --error-color: #cf6679;
+    --input-bg: #2c2c2c;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Header / Nav --- */
+header {
+    background-color: var(--card-bg);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+
+nav a {
+    color: var(--text-color);
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Main Content --- */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centraliza verticalmente */
+    padding: 2rem;
+}
+
+/* Estilo de Cartão para Formulários e Buscas */
+.container-card {
+    background-color: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+/* --- Inputs e Botões --- */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: var(--input-bg);
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: white;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background-color: var(--primary-color);
+    color: #000;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+/* --- Mensagens de Feedback --- */
+.mensagem-sucesso { color: var(--secondary-color); margin-top: 15px; }
+.mensagem-erro { color: var(--error-color); margin-top: 15px; }
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
