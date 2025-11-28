@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veiculos autorizados</title>
+</head>
+
+<body>
+    <header>
+        menu nav
+        com uma logo da prefeitura a direita
+        a esquerda dois links cadastro e busca
+    </header>
+
+    <header>
+        menu nav
+        <a href="cadastro.html">Cadastro</a> | <a href="index.html">Busca</a>
+    </header>
+
+    <main>
+        <div class="FormularioDeCadastroDeVeiculos">
+            <h2>Insira os dados do veículo:</h2>
+            <form id="formCadastro">
+                <p>
+                    <label for="placa">Placa do Veículo (Ex: ABC1D34):</label><br>
+                    <input type="text" id="placa" name="placa" required placeholder="LLLNLNN">
+                </p>
+                <p>
+                    <label for="proprietario">Proprietário:</label><br>
+                    <input type="text" id="proprietario" name="proprietario" required>
+                </p>
+                <p>
+                    <label for="modelo">Modelo:</label><br>
+                    <input type="text" id="modelo" name="modelo" required>
+                </p>
+
+                <button type="submit">Cadastrar</button>
+            </form>
+
+            <div class="saidaDeCadastro" id="saidaCadastro">
+            </div>
+        </div>
+
+    </main>
+    <script type="module" src="../core/TabelaHash.js"></script>
+    <script type="module" src="../core/TabelaHashTest.js"></script>
+    <script type="module" src="../core/ServicoCadastro.js"></script>
+    <script type="module" src="../main.js"></script>
+    <footer>
+        //footer simples em preto
+    </footer>
+</body>
+
+</html>

@@ -27,7 +27,6 @@ console.log("------------------------");
 console.log("--- 2º Exclusão: Chave Inexistente ---");
 const sucessoExcluir2 = tabela.excluir("XXX9999");
 console.log(`Tentativa de excluir "XXX9999": ${sucessoExcluir2} (Esperado: false)`);
-
 // Verificação final para garantir que "Osteinildo" e "Clóvis" permaneceram
 console.log("\n--- Resumo Final ---");
 console.log(`Obter "ABC1D38": ${tabela.obter("ABC1D38")}`); // Esperado: Osteinildo

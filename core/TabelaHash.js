@@ -1,7 +1,7 @@
 export class TabelaHash {
     constructor() {
         //tamanhos com numeros primos ajudariam a maximizar a dispersão dos resultados e minimizar a chance de colisões
-        this.tamanho = 10;
+        this.tamanho = 100;
         this.tabela = new Array(this.tamanho).fill(null);
         //inicializa o array com nulos
     }
@@ -39,25 +39,24 @@ export class TabelaHash {
                 return this.tabela[index][i].valor;
             }
         }
-        return undefined;//caso não encontre
+        return undefined;//caso não encontre a chave
     }
 
     excluir(key) {
         const index = this.hash(key);
+
+        // Se a posição está vazia, não há o que excluir
+        if (this.tabela[index] === null) {
+            return false;
+        }
+
         for (let i = 0; i < this.tabela[index].length; i++) {
             if (this.tabela[index][i].key === key) {
-                 this.tabela[index].splice(i, 1);
+                this.tabela[index].splice(i, 1);
+                return true;
             }
         }
         return false;//se o looping terminar e chave não ser encontrada
     }
 
 }
-
-var tabela = new TabelaHash();
-
-tabela.inserir("ABC1D34", "Astolfo");
-tabela.inserir("ABC1D38", "Osteinildo");
-
-console.log(tabela.obter("ABC1D34"));
-console.log(tabela.obter("ABC1D38"));
