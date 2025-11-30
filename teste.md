@@ -17,8 +17,11 @@
 
 ---
 
-### 📝 Análise do Comportamento
-O teste acima valida a lógica do `BuscaController.js`, especificamente:
-1. **Limpeza de Estado:** Se havia um erro na tela, ele é removido ao fazer uma nova busca com sucesso.
-2. **Toggle de Visibilidade:** O `style.display = 'none'` e `'table'` da tabela está funcionando conforme o retorno da Tabela Hash.
-3. **Persistência:** Garante que múltiplas consultas não "quebram" a estrutura de dados.
+### 3. Testes de Cadastro (Inserção)
+
+| ID | Cenário | Ação / Dados | Resultado Esperado | Status |
+| :--- | :--- | :--- | :--- | :---: |
+| **CT-CAD-01** | **Cadastro Simples** | Placa: `BRA2E19`<br>Prop: `Ana Clara`<br>Modelo: `Civic` | Mensagem "Veículo cadastrado com sucesso!" e campos limpos. | ✅ |
+| **CT-CAD-02** | **Cadastro Duplicado** | Tentar cadastrar a mesma placa `BRA2E19` novamente. | O sistema deve impedir (lançar erro) ou atualizar o registro (dependendo da regra). *Ideal: "Erro: Placa já cadastrada".* | ⚠️ |
+| **CT-CAD-03** | **Validação de Formato** | Placa: `123456` (Apenas números) | Erro: "Formato de placa inválido". | ✅ |
+| **CT-CAD-04** | **Inserção em Massa** | Rodar script de carga com 50 veículos. | O sistema deve processar as 50 inserções sem travar e permitir busca posterior. | ✅ |
