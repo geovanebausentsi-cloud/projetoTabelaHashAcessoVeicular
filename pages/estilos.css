@@ -24,7 +24,24 @@ body {
     flex-direction: column;
     min-height: 100vh;
 }
+/* --- Estilos da Logo e Cabeçalho --- */
 
+/* Alinha a imagem e o texto na horizontal */
+.logo-titulo {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espaço entre a imagem e o texto */
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--primary-color); /* Usa a cor roxa do seu tema */
+}
+
+/* Controla o tamanho da imagem */
+.logo-pequena {
+    height: 50px; /* Define a altura fixa */
+    width: auto;  /* A largura se ajusta proporcionalmente */
+    filter: drop-shadow(0 0 2px rgba(255,255,255,0.3)); /* Leve brilho para destacar no fundo escuro */
+}
 /* --- Header / Nav --- */
 header {
     background-color: var(--card-bg);
@@ -116,4 +133,97 @@ footer {
     padding: 1rem;
     font-size: 0.8rem;
     opacity: 0.6;
+}
+
+/* --- Estilos da Tabela de Resultados --- */
+.tabela-resultado {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--input-bg);
+    border-radius: 8px;
+    overflow: hidden; /* Para respeitar o border-radius */
+}
+
+.tabela-resultado th,
+.tabela-resultado td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+.tabela-resultado th {
+    background-color: var(--primary-color);
+    color: #000;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.tabela-resultado tr:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Efeito hover na linha */
+}
+
+.tabela-resultado td {
+    color: var(--text-color);
+}
+
+/* --- RESPONSIVIDADE (Adicione ao final do arquivo) --- */
+
+@media (max-width: 600px) {
+    
+    /* 1. Ajuste do Cabeçalho */
+    header {
+        flex-direction: column; /* Empilha Logo em cima e Menu embaixo */
+        gap: 15px;
+        padding: 1rem; /* Menos preenchimento nas bordas */
+        text-align: center;
+    }
+
+    .logo-titulo {
+        flex-direction: column; /* Empilha a imagem e o texto da logo */
+        gap: 5px;
+    }
+
+    nav {
+        display: flex;
+        justify-content: center; /* Centraliza os links */
+        width: 100%;
+        gap: 20px; /* Espaço entre os links */
+        margin-top: 5px;
+    }
+
+    nav a {
+        margin-right: 0; /* Remove a margem direita fixa do desktop */
+        font-size: 1rem;
+        padding: 5px 10px; /* Aumenta a área de toque */
+    }
+
+    /* 2. Ajuste do Conteúdo Principal */
+    main {
+        padding: 1rem; /* Reduz padding externo */
+        align-items: flex-start; /* Evita que centralize verticalmente se o teclado abrir */
+    }
+
+    .container-card {
+        padding: 1.5rem; /* Reduz o "inchaço" interno do card */
+        width: 100%; /* Garante que use a largura total */
+    }
+
+    h2 {
+        font-size: 1.3rem; /* Diminui um pouco o título */
+    }
+
+    /* 3. Ajuste da Tabela */
+    .tabela-resultado {
+        display: block; /* Permite scroll horizontal se necessário */
+        overflow-x: auto;
+        white-space: nowrap; /* Evita quebra de linha feia em telas muito pequenas */
+    }
+
+    .tabela-resultado th, 
+    .tabela-resultado td {
+        padding: 10px 8px; /* Reduz espaçamento das células */
+        font-size: 0.85rem; /* Fonte levemente menor para caber mais dados */
+    }
 }
