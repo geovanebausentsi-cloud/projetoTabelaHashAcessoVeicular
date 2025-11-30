@@ -9,10 +9,8 @@
 </head>
 
 <body>
+
     <header>
-        <div style="font-weight: bold; font-size: 1.2rem; color: var(--primary-color);">
-            🚗 Controlo de Acesso
-        </div>
         <nav>
             <a href="cadastro.html">Cadastro</a>
             <a href="index.html">Busca</a>
@@ -22,38 +20,25 @@
     <main>
         <div class="container-card">
             <h2>📝 Novo Cadastro</h2>
-            <p style="color: #aaa; margin-bottom: 20px; font-size: 0.9rem;">
-                Preencha os dados abaixo para autorizar um veículo.
-            </p>
 
             <form id="formCadastro">
-                <div style="text-align: left;">
-                    <label for="placa">Placa do Veículo</label>
-                    <input type="text" id="placa" name="placa" required placeholder="Ex: ABC1D34">
-                </div>
+                <label for="placa">Placa do veículo(Ex:ABC1D34)</label>
+                <input type="text" id="placa" placeholder="ABC1D34">
 
-                <div style="text-align: left; margin-top: 10px;">
-                    <label for="proprietario">Nome do Proprietário</label>
-                    <input type="text" id="proprietario" name="proprietario" required placeholder="Nome completo">
-                </div>
+                <label for="proprietario">Proprietário</label>
+                <input type="text" id="proprietario" placeholder="João Silva">
 
-                <div style="text-align: left; margin-top: 10px;">
-                    <label for="modelo">Modelo do Carro</label>
-                    <input type="text" id="modelo" name="modelo" required placeholder="Ex: Fiat Uno">
-                </div>
+                <label for="modelo">Modelo</label>
+                <input type="text" id="modelo" placeholder="Gol, Uno, etc.">
 
-                <button type="submit">Cadastrar Veículo</button>
+                <button type="submit">Cadastrar</button>
             </form>
 
-            <div class="saidaDeCadastro" id="saidaCadastro"></div>
+            <div id="saidaCadastro"></div>
         </div>
     </main>
 
-    <footer>
-        &copy; 2025 Prefeitura Municipal - Sistema de Controlo
-    </footer>
-
     <script type="module" src="../main.js"></script>
-</body>
 
+</body>
 </html>

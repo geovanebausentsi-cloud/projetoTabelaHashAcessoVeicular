@@ -1,10 +1,13 @@
 export class TabelaHash {
-    constructor() {
-        //tamanhos com numeros primos ajudariam a maximizar a dispersão dos resultados e minimizar a chance de colisões
-        this.tamanho = 100;
-        this.tabela = new Array(this.tamanho).fill(null);
-        //inicializa o array com nulos
+   constructor() {
+    this.tamanho = 100;
+    this.tabela = new Array(this.tamanho);
+
+    // Inicializa cada posição como um array vazio
+    for (let i = 0; i < this.tamanho; i++) {
+        this.tabela[i] = [];
     }
+}
 
     //função de dispersão
     //composição das placas  4 letras e 3 numeros

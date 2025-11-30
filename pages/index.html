@@ -10,9 +10,12 @@
 
 <body>
     <header>
-        <div style="font-weight: bold; font-size: 1.2rem; color: var(--primary-color);">
-            🚗 Controlo de Acesso
+        <div class="logo-titulo">
+            <img src="https://i.pinimg.com/originals/2f/de/60/2fde60b7a958b0f5948257513a0d3663.png"
+                alt="Brasão do Governo Federal" class="logo-pequena">
+            <span>Controlo de Acesso</span>
         </div>
+
         <nav>
             <a href="cadastro.html">Cadastro</a>
             <a href="index.html">Busca</a>
@@ -20,16 +23,35 @@
     </header>
 
     <main>
-        <div class="container-card">
+        <section class="container-card">
             <h2>🔎 Buscar Veículo Autorizado</h2>
-            
-            <div class="buscaDeVeiculos">
-                <input type="text" id="inputPlacaBusca" placeholder="Digite a placa (Ex: ABC1D34)">
-                <button id="btnBuscar">Buscar Agora</button>
 
-                <div id="resultadoBusca" style="margin-top: 20px;"></div>
-            </div>
-        </div>
+            <form id="formBusca" class="buscaDeVeiculos" onsubmit="return false;">
+                <label for="inputPlacaBusca" class="sr-only">Placa</label>
+                <input type="text" id="inputPlacaBusca" placeholder="Digite a placa (Ex: ABC1D34)">
+
+                <button type="button" id="btnBuscar">Buscar Agora</button>
+            </form>
+
+            <section id="resultadoBusca" class="resultado-container">
+
+                <table id="tabelaResultado" class="tabela-resultado" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Placa</th>
+                            <th>Proprietário</th>
+                            <th>Modelo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaCorpo">
+                        <!-- O BuscaController vai preencher -->
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
     </main>
 
     <footer>
