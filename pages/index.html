@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar Veículo - Prefeitura</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo-titulo">
+            <img src="https://i.pinimg.com/originals/2f/de/60/2fde60b7a958b0f5948257513a0d3663.png"
+                alt="Brasão do Governo Federal" class="logo-pequena">
+            <span>Controlo de Acesso</span>
+        </div>
+        <nav>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="index.html">Busca</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container-card">
+            <h2>🔎 Buscar Veículo Autorizado</h2>
+
+            <form id="formBusca" class="buscaDeVeiculos" onsubmit="return false;">
+                <label for="inputPlacaBusca" class="sr-only">Placa</label>
+                <input type="text" id="inputPlacaBusca" placeholder="Digite a placa (Ex: ABC1D34)">
+
+                <button type="button" id="btnBuscar">Buscar Agora</button>
+            </form>
+
+            <section id="resultadoBusca" class="resultado-container">
+
+                <table id="tabelaResultado" class="tabela-resultado" style="display: none;">
+                    <thead>
+                        <tr>
+                            <th>Placa</th>
+                            <th>Proprietário</th>
+                            <th>Modelo</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="tabelaCorpo">
+                        <!-- O BuscaController vai preencher -->
+                    </tbody>
+                </table>
+
+            </section>
+
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2025 Prefeitura Municipal - Sistema de Controle de veiculos
+    </footer>
+
+    <script type="module" src="../main.js"></script>
+    <script type="module" src="../core/TabelaHashTest.js"></script>
+</body>
+
+</html>

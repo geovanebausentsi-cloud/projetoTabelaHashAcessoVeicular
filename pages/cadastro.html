@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastrar Veículo - Prefeitura</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+
+   <header>
+        <div class="logo-titulo">
+            <img src="https://i.pinimg.com/originals/2f/de/60/2fde60b7a958b0f5948257513a0d3663.png"
+                alt="Brasão do Governo Federal" class="logo-pequena">
+            <span>Controlo de Acesso</span>
+        </div>
+        <nav>
+            <a href="cadastro.html">Cadastro</a>
+            <a href="index.html">Busca</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container-card">
+            <h2>📝 Novo Cadastro</h2>
+
+            <form id="formCadastro">
+                <label for="placa">Placa do veículo(Ex:ABC1D34)</label>
+                <input type="text" id="placa" placeholder="ABC1D34">
+
+                <label for="proprietario">Proprietário</label>
+                <input type="text" id="proprietario" placeholder="João Silva">
+
+                <label for="modelo">Modelo</label>
+                <input type="text" id="modelo" placeholder="Gol, Uno, etc.">
+
+                <button type="submit">Cadastrar</button>
+            </form>
+
+            <div id="saidaCadastro"></div>
+        </div>
+    </main>
+
+    <script type="module" src="../main.js"></script>
+
+</body>
+</html>
