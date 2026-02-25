@@ -25,7 +25,7 @@ Realizar busca de 3 placas existentes e 2 inexistentes, mostrando o comportament
 
 Entrega esperada:
 
-Código funcional (em JavaScript); [12 pontos]
-Registro de testes feitos (com placas existentes e inexistentes); [4 pontos]
+Código funcional (em JavaScript); 
+Registro de testes feitos (com placas existentes e inexistentes); 
 Captura de tela (ou vídeo curto) mostrando uso da função de busca com feedback.
-Comentários no código explicando o funcionamento; [4 pontos]
+Comentários no código explicando o funcionamento; 
