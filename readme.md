@@ -4,7 +4,10 @@ Implementar uma estrutura de dados utilizando tabela de hash (hash table) para c
 
 Contextualizando:
 
-A prefeitura de uma cidade está digitalizando o sistema de controle de acesso a uma área restrita. Cada veículo autorizado deve ter sua placa cadastrada no sistema com informações básicas, como nome do proprietário e modelo do carro.
+A prefeitura de uma cidade está digitalizando o sistema de controle de acesso a uma área restrita.
+ Cada veículo autorizado deve ter
+  sua placa cadastrada no sistema com informações básicas,
+   como nome do proprietário e modelo do carro.
 
 Você foi contratado para implementar uma solução simples que:
 
